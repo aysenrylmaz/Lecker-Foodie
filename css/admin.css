@@ -2,109 +2,112 @@
 Theme:Food Order Website Admin
 Version:1.0;*/
 
-*{
-margin: 0;
-padding: 0;
-font-family: Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.wrapper{
-    
+.wrapper {
+
     padding: 1%;
     width: 80%;
     margin: 0 auto;
-    
-}
-.tbl-full{
-    width: 100%;
-  }
-    
-.tbl-30{
-  width: 30%;
-}
-.usertext{
-    color: black;
-    padding: 1% ;
-    text-decoration:underline;
-    align-items:flex-end;
-    margin-right: 0%;
-}   
 
-.usertext:hover{
+}
+
+.tbl-full {
+    width: 100%;
+}
+
+.tbl-30 {
+    width: 30%;
+}
+
+.usertext {
+    color: black;
+    padding: 1%;
+    text-decoration: underline;
+    align-items: flex-end;
+    margin-right: 0%;
+}
+
+.usertext:hover {
     font-weight: bold;
 }
 
-.text-center{
+.text-center {
 
     text-align: center;
-    
+
 }
 
-.clearfix{
-float: none;
-clear: both;
+.clearfix {
+    float: none;
+    clear: both;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: #1e90ff;
-    padding: 1% ;
+    padding: 1%;
     text-decoration: none;
     font-weight: bold;
     color: white;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background-color: #1e90aa;
 }
 
-.btn-secondary{
+.btn-secondary {
     background-color: #7beb3a;
-    padding: 1% ;
+    padding: 1%;
     text-decoration: none;
     font-weight: bold;
     color: white;
     font-weight: bold;
 }
 
-.btn-secondary:hover{
+.btn-secondary:hover {
     background-color: #7bed9f;
 }
 
-.btn-danger{
+.btn-danger {
     background-color: #ff0a50;
-    padding: 1% ;
+    padding: 1%;
     text-decoration: none;
     font-weight: bold;
     color: white;
     font-weight: bold;
 }
 
-.btn-danger:hover{
+.btn-danger:hover {
     background-color: #ff6b81;
 }
 
-.success{
-    color:#2ed573
+.success {
+    color: #2ed573
 }
-.error{
+
+.error {
 
     color: #ff4757;
 }
 
-.col-4{
-     width: 18%;
-     background-color: white;
-     margin: 1%;
-     padding: 2%;
-     float: left;
+.col-4 {
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
 }
 
 
-table tr td{
+table tr td {
     padding: 1%;
 }
 
-table tr th{
+table tr th {
     border-bottom: 1px solid rgb(98, 18, 79);
     padding: 1%;
     text-align: left;
@@ -112,44 +115,45 @@ table tr th{
 
 
 
-     /* CSS for Menu*/
-.menu{
-    
+/* CSS for Menu*/
+.menu {
+
     border-bottom: 1px solid gray;
     text-align: center;
 }
 
-.menu ul{
+.menu ul {
     list-style-type: none;
 }
 
-.menu ul li{
-    display:inline-flex;
+.menu ul li {
+    display: inline-flex;
     padding: 1%;
 }
 
-.menu ul li a{
+.menu ul li a {
     text-decoration: none;
     font-weight: bold;
     color: #ff4757;
 }
 
-.menu ul li a:hover{
+.menu ul li a:hover {
     color: #ff6b81;
 }
 
-.main-content{
+.main-content {
     background-color: #f1f2f6;
     padding: 3% 0;
 }
 
 /* CSS for Footer*/
-.footer{
+.footer {
     background-color: #ff4757;
     color: white;
 }
+
 /*CSS for login*/
-.login{
+.login {
     border: 1px solid grey;
     width: 20%;
     margin: 10% auto;

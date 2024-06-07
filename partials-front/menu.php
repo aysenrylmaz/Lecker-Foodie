@@ -1,8 +1,8 @@
-
 <?php include('./config/constants.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- Important to make website responsive -->

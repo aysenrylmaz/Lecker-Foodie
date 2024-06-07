@@ -1,139 +1,125 @@
 <?php include('partials-front/menu.php'); ?>
-     
+
 <?php
 //Check whether food is set or not
-if(isset($_GET['food_id']))
-{
-//Get the Food id and details of the selected food
-$food_id=$_GET['food_id'];
+if (isset($_GET['food_id'])) {
+  //Get the Food id and details of the selected food
+  $food_id = $_GET['food_id'];
 
   //Get  the details ofthe selected food
-  $sql="SELECT * FROM tbl_food WHERE id=$food_id";
-  
+  $sql = "SELECT * FROM tbl_food WHERE id=$food_id";
+
   //Execute the Query
-  $res=mysqli_query($conn,$sql);
+  $res = mysqli_query($conn, $sql);
 
   //Count the rows
-  $count=mysqli_num_rows($res);
+  $count = mysqli_num_rows($res);
 
   //Check whether the data is available or not
-  if($count==1)
-  {
-          //We have data
+  if ($count == 1) {
+    //We have data
 
-        //Get the Data from Database
-      $row= mysqli_fetch_assoc($res);
-      $title=$row['title'];
-      $price=$row['price'];
-      $image_name=$row['image_name'];
-
+    //Get the Data from Database
+    $row = mysqli_fetch_assoc($res);
+    $title = $row['title'];
+    $price = $row['price'];
+    $image_name = $row['image_name'];
+  } else {
+    //Food not available
+    //Redirect to Home Page
+    header("location:" . SITEURL);
   }
-  else
-  {
-         //Food not available
-         //Redirect to Home Page
-         header("location:".SITEURL);
-
-  }
-
-}
-else
-{
-   //Redirect to homepage
-   header("location:".SITEURL);
+} else {
+  //Redirect to homepage
+  header("location:" . SITEURL);
 }
 
 ?>
 
-    <!-- fOOD sEARCH Section Starts Here -->
-    <section class="food-search">
-        <div class="container">
-            
-            <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
+<!-- fOOD sEARCH Section Starts Here -->
+<section class="food-search">
+  <div class="container">
 
-            <form action="#" class="order" method="POST">
-                <fieldset>
-                    <legend>Selected Food</legend>
+    <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
 
-                    <div class="food-menu-img">
+    <form action="#" class="order" method="POST">
+      <fieldset>
+        <legend>Selected Food</legend>
 
-                    <?php
-                //Check whether Image is available or not
-                         if($image_name=="")
-                         {
-                            echo "<div class='error'> Image not Available! </div>";
+        <div class="food-menu-img">
 
-                         }
-                         else
-                         {
-                            ?>
+          <?php
+          //Check whether Image is available or not
+          if ($image_name == "") {
+            echo "<div class='error'> Image not Available! </div>";
+          } else {
+          ?>
 
-                              <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" class="img-responsive img-curve">
+            <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" class="img-responsive img-curve">
 
-                            <?php
-                
-                         }
+          <?php
+
+          }
 
 
-                         ?>
-                        
-                    </div>
-    
-                    <div class="food-menu-desc">
-                        <h3><?php echo $title;?></h3>
-                        <input type="hidden" name="food" value="<?php echo $title;?>"> 
+          ?>
 
-                        <p class="food-price">$<?php echo $price; ?></p>
-                        <input type="hidden" name="price" value="<?php echo $price;?>"> 
+        </div>
 
-                        <div class="order-label">Quantity</div>
-                        <input type="number" name="qty" class="input-responsive" value="1" required>
-                        
-                    </div>
+        <div class="food-menu-desc">
+          <h3><?php echo $title; ?></h3>
+          <input type="hidden" name="food" value="<?php echo $title; ?>">
 
-                </fieldset>
-                
-                <fieldset>
-                    <legend>Delivery Details</legend>
-                    <div class="order-label">Full Name</div>
-                    <input type="text" name="full-name" placeholder="E.g. Vijay Thapa" class="input-responsive" required>
+          <p class="food-price">$<?php echo $price; ?></p>
+          <input type="hidden" name="price" value="<?php echo $price; ?>">
 
-                    <div class="order-label">Phone Number</div>
-                    <input type="tel" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" required>
+          <div class="order-label">Quantity</div>
+          <input type="number" name="qty" class="input-responsive" value="1" required>
 
-                    <div class="order-label">Email</div>
-                    <input type="email" name="email" placeholder="E.g. hi@vijaythapa.com" class="input-responsive" required>
+        </div>
 
-                    <div class="order-label">Address</div>
-                    <textarea name="address" rows="10" placeholder="E.g. Street, City, Country" class="input-responsive" required></textarea>
+      </fieldset>
 
-                    <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
-                </fieldset>
+      <fieldset>
+        <legend>Delivery Details</legend>
+        <div class="order-label">Full Name</div>
+        <input type="text" name="full-name" placeholder="E.g. Vijay Thapa" class="input-responsive" required>
 
-            </form>
+        <div class="order-label">Phone Number</div>
+        <input type="tel" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" required>
 
-             <?php
-             
-             //Check whether submit button is clicked or not
-            if(isset($_POST['submit']))
-            {
-                //Get all the details from the form
-                 $food=$_POST['food'];
-                 $price=$_POST['price'];
-                 $qty=$_POST['qty'];
-                 $total=$price*$qty; // total=price x qty
-                 $order_date=date("Y-m-d h:i:sa");  //Order Date-current time
-                 $status="Ordered"; // Status types: Ordered, on delivery, delivered, cancelled
-                 $customer_name= $_POST['full-name'];
-                 $customer_contact= $_POST['contact'];
-                 $customer_email= $_POST['email'];
-                 $customer_address= $_POST['address'];
+        <div class="order-label">Email</div>
+        <input type="email" name="email" placeholder="E.g. hi@vijaythapa.com" class="input-responsive" required>
+
+        <div class="order-label">Address</div>
+        <textarea name="address" rows="10" placeholder="E.g. Street, City, Country" class="input-responsive" required></textarea>
+
+        <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
+      </fieldset>
+
+    </form>
+
+    <?php
+
+    //Check whether submit button is clicked or not
+    if (isset($_POST['submit'])) {
+      //Get all the details from the form
+      $food = $_POST['food'];
+      $price = $_POST['price'];
+      $qty = $_POST['qty'];
+      $total = $price * $qty; // total=price x qty
+      $order_date = date("Y-m-d h:i:sa");  //Order Date-current time
+      $status = "Ordered"; // Status types: Ordered, on delivery, delivered, cancelled
+      $customer_name = $_POST['full-name'];
+      $customer_contact = $_POST['contact'];
+      $customer_email = $_POST['email'];
+      $customer_address = $_POST['address'];
 
 
-                 //Save the Order in Database
-                 //Create SQL to save the data
+      //Save the Order in Database
+      //Create SQL to save the data
 
-                 $sql2="INSERT INTO tbl_order SET
+      $sql2 = "INSERT INTO tbl_order SET
                         food='$food',
                         price=$price,
                         qty=$qty,
@@ -143,39 +129,31 @@ else
                         customer_name='$customer_name',
                         customer_contact='$customer_contact',
                         customer_email='$customer_email',
-                        customer_address='$customer_address'"    ;
-            
-
-                //echo $sql2; die();
-              //Execute the query
-              $res2=mysqli_query($conn,$sql2);
-         //Check whether query executed succesfully or not
-
-         if($res2==true)
-         {
-            //Query Executed and Order Saved
-           $_SESSION['order']="<div class='success text-center'>Food Ordered Succesfully. </div>";
-           //Redirect to Home
-           header("location:".SITEURL);
+                        customer_address='$customer_address'";
 
 
-         }
-         else
-         {
-            //Failed to Save Order
+      //echo $sql2; die();
+      //Execute the query
+      $res2 = mysqli_query($conn, $sql2);
+      //Check whether query executed succesfully or not
 
-            $_SESSION['order']="<div class='error text-center'>Fail to Food Order.</div>";
-           //Redirect to Home
-           header("location:".SITEURL);
+      if ($res2 == true) {
+        //Query Executed and Order Saved
+        $_SESSION['order'] = "<div class='success text-center'>Food Ordered Succesfully. </div>";
+        //Redirect to Home
+        header("location:" . SITEURL);
+      } else {
+        //Failed to Save Order
 
-         }
-            
+        $_SESSION['order'] = "<div class='error text-center'>Fail to Food Order.</div>";
+        //Redirect to Home
+        header("location:" . SITEURL);
+      }
+    }
+    ?>
 
-        }
-             ?>
+  </div>
+</section>
+<!-- fOOD sEARCH Section Ends Here -->
 
-        </div>
-    </section>
-    <!-- fOOD sEARCH Section Ends Here -->
-
-    <?php include('partials-front/footer.php'); ?>
+<?php include('partials-front/footer.php'); ?>
